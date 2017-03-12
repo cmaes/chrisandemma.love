@@ -10,7 +10,5 @@
 <meta property="og:description" content="Chris and Emma are getting married!">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
-  <center>
-  <img src="dronie.jpg" width="600" height="600">
-  </center>
+  <img src="dronie.jpg">
 </body>
