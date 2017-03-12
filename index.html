@@ -20,12 +20,13 @@ body {
   margin: 0;
   text-rendering: optimizeLegibility;
   text-transform:lowercase;
+  color: rgb(44,58, 87);
 }
 
 
 #masthead {
   font-family: 'Raleway Dots';
-  font-size: 80px;
+  font-size: 100px;
   color: white;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -51,17 +52,16 @@ body {
 }
 
 h1, h2, h3, h4 {
-   font-family: 'Raleway Dots', serif;
-   color: #000;
+   font-family: 'Poiret One', sans;
+   color: rgb(44,58, 87);
    text-rendering: optimizeLegibility;
 }
 
 h1 {
-   color: #163842;
    line-height: 1.2em;
    letter-spacing: -0.025em;
    font-weight: 1200;
-   font-size: 44px;
+   font-size: 52px;
    margin-top: 0;
    margin-right: 0;
    margin-bottom: 0;
@@ -90,10 +90,12 @@ h1 {
     padding-top: 1.25em;
     padding-bottom: 1.25em;
     color: white;
+    font-family: 'Poiret One';
   }
 
   #footer a {
     color: white;
+    text-decoration: none;
   }
  site_icon {
       padding-right: 1em;
@@ -129,13 +131,15 @@ h1 {
     <div class="container">
       <center>
 	<site_icon>
-          <a href="mailto:cmmaes@gmail.com"><i class="fa fa-male fa-2x"></i></a>
+          <a href="mailto:cmmaes@gmail.com"><span style="font-size:56px">chris</span></a>
         </site_icon>
 	<site_icon onclick="document.getElementById('like').className = 'fa fa-heart fa-2x'">
           <i id="like" class="fa fa-heart-o fa-2x"></i>
         </site_icon>
 	<site_icon>
-	  <a href="mailto:emmafaye@gmail.com"><i class="fa fa-female fa-2x"></i></a>
+	  <span style="font-size:56px">
+	  <a href="mailto:emmafaye@gmail.com">emma</i></a>
+          </span>
 	</site_icon>
       </center>
     </div>
