@@ -12,12 +12,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style>
 @import url('https://fonts.googleapis.com/css?family=Raleway+Dots');
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:100');
 body {
-  font-family: "Montserrat", serif;
-  font-size: 16px;
+  font-family: "Alegreya Sans", sans;
+  font-size: 28px;
   margin: 0;
+  text-rendering: optimizeLegibility;
+  text-transform:lowercase;
 }
 
 
@@ -30,6 +32,7 @@ body {
   background: rgb(139,200, 184);
   background-repeat: repeat-x;
   background-position: 0 0;
+  text-transform: none;
 }
 
 .container {
@@ -41,8 +44,8 @@ body {
 #main_content {
   margin: 0;
   padding: 0.5em;
-  padding-top: 1em;
-  padding-bottom: 0;
+  padding-top: 2em;
+  padding-bottom: 2em;
   background: #ffffff;
   border-radius: 10px;
 }
@@ -71,12 +74,21 @@ h1 {
   text-align: center;
 }
 
+#date {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 100;
+  font-family: 'Poiret One';
+  font-size: 80px;
+}
+
+
  #footer {
     background: #596e79;
     background-repeat: repeat-x;
     background-position: 0 0;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
     color: white;
   }
 
@@ -101,13 +113,15 @@ h1 {
       <p class="center">
 	We are getting married!
       </p>
+      <div id="date">
+       8 . 12 . 17
+      </div>
       <p class="center">
-	August 12th 2017 </br>
 	St. Francis Winery </br>
 	Santa Rosa, California </br>
       </p>
       <center>
-	<img src="san_diego.jpeg" height="700">
+	<img style="padding-top:1em" src="san_diego.jpeg" height="700">
       </center>
     </div>
   </div>
@@ -115,13 +129,13 @@ h1 {
     <div class="container">
       <center>
 	<site_icon>
-          <a href="mailto:emmafaye@gmail.com"><i class="fa fa-male fa-2x"></i></a>
+          <a href="mailto:cmmaes@gmail.com"><i class="fa fa-male fa-2x"></i></a>
+        </site_icon>
+	<site_icon onclick="document.getElementById('like').className = 'fa fa-heart fa-2x'">
+          <i id="like" class="fa fa-heart-o fa-2x"></i>
         </site_icon>
 	<site_icon>
-          <i class="fa fa-heart-o fa-2x"></i>
-        </site_icon>
-	<site_icon>
-	  <i class="fa fa-female fa-2x"></i>
+	  <a href="mailto:emmafaye@gmail.com"><i class="fa fa-female fa-2x"></i></a>
 	</site_icon>
       </center>
     </div>
