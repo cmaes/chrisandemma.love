@@ -28,8 +28,8 @@ body {
   font-family: 'Raleway Dots';
   font-size: 100px;
   color: white;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   background: rgb(139,200, 184);
   background-repeat: repeat-x;
   background-position: 0 0;
@@ -44,9 +44,10 @@ body {
 
 #main_content {
   margin: 0;
-  padding: 0.5em;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   background: #ffffff;
   border-radius: 10px;
 }
@@ -76,10 +77,9 @@ h1 {
 
 #date {
   text-align: center;
-  font-size: 48px;
   font-weight: 100;
   font-family: 'Poiret One';
-  font-size: 80px;
+  font-size: 56px;
 }
 
 
@@ -93,13 +93,46 @@ h1 {
     font-family: 'Poiret One';
   }
 
+  #footer .names {
+    font-size: 30px;
+  }
+
   #footer a {
     color: white;
     text-decoration: none;
   }
- site_icon {
-      padding-right: 1em;
+  site_icon {
+      padding-right: 0.25em;
   }
+
+  #walking {
+      padding-top: 0.25em;
+      width: 300px;
+  }
+@media (min-width: 800px) {
+    #masthead {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    #main_content {
+      padding-top: 2em;
+      padding-bottom: 2em;
+    }
+    #date {
+     font-size: 80px;
+    }
+    #walking {
+      padding-top: 1em;
+      width: 500px;
+    }
+    #footer .names {
+    font-size: 56px;
+    }
+    site_icon {
+      padding-right: 1em;
+    }
+}
+
 </style>
 <body>
   <div id="masthead">
@@ -123,7 +156,9 @@ h1 {
 	Santa Rosa, California </br>
       </p>
       <center>
-	<img style="padding-top:1em" src="san_diego.jpeg" height="700">
+	<div id="walking">
+	  <img style="max-width: 100%; max-height:100%" src="san_diego.jpeg">
+	</div>
       </center>
     </div>
   </div>
@@ -131,13 +166,13 @@ h1 {
     <div class="container">
       <center>
 	<site_icon>
-          <a href="mailto:cmmaes@gmail.com"><span style="font-size:56px">chris</span></a>
+          <a href="mailto:cmmaes@gmail.com"><span class="names">chris</span></a>
         </site_icon>
 	<site_icon onclick="document.getElementById('like').className = 'fa fa-heart fa-2x'">
           <i id="like" class="fa fa-heart-o fa-2x"></i>
         </site_icon>
 	<site_icon>
-	  <span style="font-size:56px">
+	  <span class="names">
 	  <a href="mailto:emmafaye@gmail.com">emma</i></a>
           </span>
 	</site_icon>
