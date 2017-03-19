@@ -11,6 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.ico?" type="image/x-icon">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Raleway+Dots');
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
@@ -23,6 +26,7 @@ body {
   text-rendering: optimizeLegibility;
   text-transform: none;
   color: rgb(44,58, 87);
+  background-color: #fdfdf7;
 }
 
 
@@ -50,8 +54,6 @@ body {
   padding-left: 0.25em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
-  background: #ffffff;
-  border-radius: 10px;
 }
 
 h1, h2, h3, h4 {
@@ -154,6 +156,33 @@ h1 {
     padding-bottom: 0.25em;
   }
 
+#map_svg {
+  background-color: #2f3d4c;
+  font-family: 'Poiret One';
+  font-size: 28px;
+  text-transform: lowercase;
+  dominant-baseline: central;
+}
+
+#map_svg .airport {
+  fill: #fe6926;
+}
+
+#map_svg #stfrancis {
+  fill: #ce3a30;
+}
+
+#map_svg .city {
+  fill: black;
+}
+
+#map_svg .highway_marker {
+  font-family: 'Alegreya Sans';
+  font-size: 18px;
+  fill: white;
+}
+
+
 
 @media (min-width: 800px) {
     #masthead {
@@ -190,109 +219,6 @@ h1 {
 }
 
 </style>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB84kAV1Dkhx5vX9uedHcrJJ6t7ni_xxfM"></script>
-        
-        <script type="text/javascript">
-            // When the window has finished loading create our google map below
-            google.maps.event.addDomListener(window, 'load', init);
-
-	    var stf_infowindow;
-            var sfo_infowindow;
-        
-            function init() {
-                // Basic options for a simple Google Map
-                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-                var mapOptions = {
-                    // How zoomed in you want the map to start at (always required)
-                    zoom: 9,
-                    disableDefaultUI: true,
-                    gestureHandling: 'none',
-
-                    // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(37.9813232,-122.6757728),
-
-                    // How you would like to style the map. 
-                    // This is where you would paste any style found on Snazzy Maps.
-                    styles: [
-	    {"elementType":"labels.text",
-	    "stylers":[{"visibility":"off"}]},
-	    {"featureType":"landscape.natural","elementType":"geometry.fill",
-	    "stylers":[{"color":"#8bc8b8"},{"visibility":"on"}]},
-	    {"featureType":"administrative","stylers":[{"visibility":"off"}]},
-	    {"featureType":"transit","stylers":[{"visibility":"off"}]},
-	    {"featureType":"poi.attraction","stylers":[{"visibility":"off"}]},
-	    {"featureType":"landscape.man_made","elementType":"geometry.fill",
-	    "stylers":[{"color":"#8bc8b8"},{"visibility":"on"}]},
-	    {"featureType":"poi.business","stylers":[{"visibility":"off"}]},
-	    {"featureType":"poi.medical","stylers":[{"visibility":"off"}]},
-	    {"featureType":"poi.place_of_worship","stylers":[{"visibility":"off"}]},
-	    {"featureType":"poi.school","stylers":[{"visibility":"off"}]},
-	    {"featureType":"poi.sports_complex","stylers":[{"visibility":"off"}]},
-	    {"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#ffffff"},
-	    {"visibility":"on"}]},
-	    {"featureType":"road.arterial","stylers":[{"visibility":"off"},{"color":"#ffffff"}]},
-	    {"featureType":"road.highway","elementType":"labels.icon",
-	    "stylers":[{"color":"#ffffff"},{"visibility":"off"}]},
-	    {"featureType":"road.highway","elementType":"labels.icon",
-	    "stylers":[{"visibility":"on"}]},
-	    {"featureType":"road.arterial","stylers":[{"color":"#ffffff"}]},
-	    {"featureType":"road.local","stylers":[{"color":"#ffffff"}]},
-	    {"featureType":"poi.park","elementType":"labels.icon","stylers":[{"visibility":"off"}]},
-	    {"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},
-	    {"featureType":"water","stylers":[{"color":"#596e79"}]},
-	    {"featureType":"landscape","stylers":[{"color":"#8bc8b8"}]},
-	    {"featureType":"poi.park","stylers":[{"color":"#596e79"}]},
-	    {"featureType":"road","stylers":[{"color":"#ffffff"}]},
-	    {"featureType":"poi.sports_complex","elementType":"geometry","stylers":[{"visibility":"off"}]},
-	    {"featureType":"water","stylers":[{"color":"#596e79"}]},
-	    {"featureType":"poi.park","stylers":[{"visibility": "off"}]},
-	    {"featureType":"road.local","stylers":[{"visibility":"off"}]},
-	    {"featureType":"road.local","elementType":"geometry","stylers":[{"visibility":"off"}]},
-	    {"featureType":"poi.government","elementType":"geometry","stylers":[{"visibility":"off"}]},
-	    {"featureType":"landscape","stylers":[{"visibility":"on"}]},
-	    {"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},
-	    {"featureType":"road.arterial","elementType":"geometry",
-	    "stylers":[{"visibility":"off"}]},
-	    {"featureType":"road.local","stylers":[{"visibility":"off"}]},
-	    {"featureType":"road"},{"featureType":"road"},{},
-	    {"featureType":"road.highway"}]
-            };
-
-                // Get the HTML DOM element that will contain your map 
-                // We are using a div with id="map" seen below in the <body>
-                var mapElement = document.getElementById('map');
-
-                // Create the Google Map using our element and options defined above
-                var map = new google.maps.Map(mapElement, mapOptions);
-
-                var stf_infowindow = new google.maps.InfoWindow();
-		var heart_icon = new google.maps.MarkerImage("heart.png");
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(38.436895,-122.5794317),
-                    map: map,
-                    title: 'St Francis Winery',
-                    icon: heart_icon,
-                });
-                google.maps.event.addListener(marker, 'click', function() {
-		  stf_infowindow.setContent('St. Francis Winery');
-		  stf_infowindow.open(map, marker);
-		});
-		sfo_infowindow = new google.maps.InfoWindow();
-                var icon = new google.maps.MarkerImage(
-                   "airplane.png");
-		var marker2 = new google.maps.Marker({
-                    position: new google.maps.LatLng(37.6213,-122.3790),
-                    map: map,
-                    title: 'SFO',
-                    icon: icon
-                });
-                google.maps.event.addListener(marker2, 'click', function() {
-		 sfo_infowindow.setContent("SFO Airport");
-		 sfo_infowindow.open(map, marker2);
-		});
-                   
-            }
-        </script>
 <body>
   <div id="masthead">
     <center>
@@ -322,8 +248,7 @@ h1 {
 	Santa Rosa, California </br>
       </p>
       <center>
-	<div id="map">
-	</div>
+        <svg id='map_svg' width="500" height="600"></svg>
       </center>
     </div>
   </div>
@@ -345,3 +270,188 @@ h1 {
     </div>
   </div>
 </body>
+<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+
+var g = svg.append("g");
+
+
+queue()
+  .defer(d3.json, 'bay_area_geo.json')
+  .defer(d3.json, 'bay_area_highway_edited.json')
+  .await(makeMyMap);
+
+function makeMyMap(error, bay_area, highways) {
+  if (error) throw error;
+
+  var projection = d3.geoConicEqualArea().parallels([36, 38]).rotate([120, 0]).fitExtent([[-100,-20],[width+110, height+10]], bay_area);
+
+  var path = d3.geoPath(projection);
+
+
+  svg.selectAll(".map_poly")
+     .data(bay_area.features)
+     .enter().append("path")
+       .attr("d", path)
+       .attr("style", "stroke: black; fill: rgb(139,200, 184);");
+
+  console.log(highways);
+  svg.selectAll(".map_poly")
+        .data(highways.features)
+        .enter().append("path")
+        .attr("class", function(d) { return 'c' +  d.properties.RouteID;})
+        .attr("d", path)
+        .attr("style", function(d) {
+                         console.log(d.properties.RouteID);
+                         if (d.properties.RouteID !== '121_20080130_R') {
+                          return "stroke: white; stroke-width: 2px; fill: none";
+                         } else {
+                          return "visibility: hidden;";
+                         }});
+
+  var st_francis = [-122.577243, 38.436895];
+  console.log(projection(st_francis));
+
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          projection(st_francis)[0] + "," + 
+                          projection(st_francis)[1] + ")")
+                 .append('image')
+                 .attr('xlink:href', 'heart.png')
+                 .attr('x', -10)
+                 .attr('y', -10);
+
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(st_francis)[0] + 20) + "," + 
+                          projection(st_francis)[1] + ")")
+                 .append('text')
+                 .attr('id', 'stfrancis')
+                 .text(function(d) { return 'St. Francis'});
+
+  var sfo = [-122.3789554,37.6213129]
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          projection(sfo)[0] + "," + 
+                          projection(sfo)[1] + ")")
+                 .append('image')
+                 .attr('xlink:href', 'airplane.png')
+                 .attr('x', -10)
+                 .attr('y', -10);
+
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(sfo)[0] - 45) + "," + 
+                          projection(sfo)[1] + ")")
+                 .append('text')
+                 .attr('class', 'airport')
+                 .attr('text-anchor', 'right')
+                 .text(function(d) { return 'SFO'});
+
+
+  var oakland = [-122.2197428,37.7125689];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          projection(oakland)[0] + "," + 
+                          projection(oakland)[1] + ")")
+                 .append('image')
+                 .attr('xlink:href', 'airplane.png')
+                 .attr('x', -15)
+                 .attr('y', -10);
+
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(oakland)[0] - 55) + "," + 
+                          projection(oakland)[1] + ")")
+                 .append('text')
+                 .attr('class', 'airport')
+                 .text(function(d) { return 'OAK'});
+
+  var santa_rosa = [-122.7142915,38.4409623];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(santa_rosa)[0]-120) + "," + 
+                          projection(santa_rosa)[1] +  ")")
+                 .append('text')
+                 .attr('class', 'city')
+                 .text(function(d) { return 'Santa Rosa'});
+
+  var sonoma = [-122.4648242,38.2909966];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(sonoma)[0] + 10) + "," + 
+                          projection(sonoma)[1] +  ")")
+                 .append('text')
+                 .attr('class', 'city')
+                 .text(function(d) { return 'Sonoma'});
+
+  var sf = [-122.5076403, 37.7576793];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(sf)[0] - 100) + "," + 
+                          projection(sf)[1] +  ")")
+                 .append('text')
+                 .attr('class', 'city')
+                 .attr('style', 'fill: white')
+                 .text(function(d) { return 'San Franscio'});
+
+  var marker_101 = [-122.515821, 37.9122075];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(marker_101)[0] - 30) + "," + 
+                          projection(marker_101)[1] +  ")")
+                 .append('text')
+                 .attr('class', 'highway_marker')
+                 .text(function(d) { return '101';});
+
+  var marker_12 = [-122.5022562, 38.3528241];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(marker_12)[0] - 30) + "," + 
+                          projection(marker_12)[1] +  ")")
+                 .append('text')
+                 .attr('class', 'highway_marker')
+                 .text(function(d) { return '12';});
+
+  var marker_37 = [-122.4870027, 38.1301627];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(marker_37)[0] - 20) + "," + 
+                          (projection(marker_37)[1] - 10) +  ")")
+                 .append('text')
+                 .attr('class', 'highway_marker')
+                 .text(function(d) { return '37';});
+
+  var marker_37_r = [-122.3553904, 38.1388446];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(marker_37_r)[0]) + "," + 
+                          (projection(marker_37_r)[1] - 10) +  ")")
+                 .append('text')
+                 .attr('class', 'highway_marker')
+                 .text(function(d) { return '37';});
+
+  var marker_80 = [-122.2914271, 37.9982876];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(marker_80)[0] + 10) + "," + 
+                          (projection(marker_80)[1]) +  ")")
+                 .append('text')
+                 .attr('class', 'highway_marker')
+                 .text(function(d) { return '80';});
+
+  var marker_880 = [-122.2376701, 37.7793846];
+  svg.append('g')
+      .attr("transform", "translate(" + 
+                          (projection(marker_880)[0] + 10) + "," + 
+                          (projection(marker_880)[1]) +  ")")
+                 .append('text')
+                 .attr('class', 'highway_marker')
+                 .text(function(d) { return '880';});
+}
+
+</script>
