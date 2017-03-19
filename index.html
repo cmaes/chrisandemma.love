@@ -157,9 +157,11 @@ h1 {
   }
 
 #map_svg {
+  width: 300;
+  height: 400;
   background-color: #2f3d4c;
   font-family: 'Poiret One';
-  font-size: 28px;
+  font-size: 20px;
   text-transform: lowercase;
   dominant-baseline: central;
 }
@@ -210,6 +212,12 @@ h1 {
      width: 500px;
      height: 640px;
     }
+    #map_svg { 
+     width: 500px;
+     height: 600px;
+     font-size: 28px;
+    }
+
     #footer .names {
     font-size: 56px;
     }
@@ -248,7 +256,7 @@ h1 {
 	Santa Rosa, California </br>
       </p>
       <center>
-        <svg id='map_svg' width="500" height="600"></svg>
+        <svg id='map_svg'></svg>
       </center>
     </div>
   </div>
@@ -272,9 +280,9 @@ h1 {
 </body>
 <script>
 
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+var svg = d3.select("#map_svg"),
+    width = +svg.style("width").slice(0,-2),
+    height = +svg.style("height").slice(0,-2);
 
 
 var g = svg.append("g");
@@ -343,9 +351,12 @@ function makeMyMap(error, bay_area, highways) {
                  .attr('x', -10)
                  .attr('y', -10);
 
+  var right_padding = width >= 500 ? 10 : 5;
+  var left_padding = width >= 500 ? 45 : 35;
+
   svg.append('g')
       .attr("transform", "translate(" + 
-                          (projection(sfo)[0] - 45) + "," + 
+                          (projection(sfo)[0] - left_padding) + "," + 
                           projection(sfo)[1] + ")")
                  .append('text')
                  .attr('class', 'airport')
@@ -353,28 +364,32 @@ function makeMyMap(error, bay_area, highways) {
                  .text(function(d) { return 'SFO'});
 
 
+  var oak_padding_icon = width >= 500 ? 0 : 10;
+  var oak_padding = width >= 500 ? 60 : 55;
   var oakland = [-122.2197428,37.7125689];
   svg.append('g')
       .attr("transform", "translate(" + 
-                          projection(oakland)[0] + "," + 
+                          (projection(oakland)[0] - oak_padding_icon) +  "," + 
                           projection(oakland)[1] + ")")
                  .append('image')
                  .attr('xlink:href', 'airplane.png')
                  .attr('x', -15)
                  .attr('y', -10);
 
+
   svg.append('g')
       .attr("transform", "translate(" + 
-                          (projection(oakland)[0] - 55) + "," + 
+                          (projection(oakland)[0] - oak_padding) + "," + 
                           projection(oakland)[1] + ")")
                  .append('text')
                  .attr('class', 'airport')
                  .text(function(d) { return 'OAK'});
 
+  var santa_rosa_padding = width >= 500 ? 120 : 100;
   var santa_rosa = [-122.7142915,38.4409623];
   svg.append('g')
       .attr("transform", "translate(" + 
-                          (projection(santa_rosa)[0]-120) + "," + 
+                          (projection(santa_rosa)[0]-santa_rosa_padding) + "," + 
                           projection(santa_rosa)[1] +  ")")
                  .append('text')
                  .attr('class', 'city')
@@ -383,16 +398,17 @@ function makeMyMap(error, bay_area, highways) {
   var sonoma = [-122.4648242,38.2909966];
   svg.append('g')
       .attr("transform", "translate(" + 
-                          (projection(sonoma)[0] + 10) + "," + 
+                          (projection(sonoma)[0] + right_padding) + "," + 
                           projection(sonoma)[1] +  ")")
                  .append('text')
                  .attr('class', 'city')
                  .text(function(d) { return 'Sonoma'});
 
+  var sf_padding = width >= 500 ? 100 : 80;
   var sf = [-122.5076403, 37.7576793];
   svg.append('g')
       .attr("transform", "translate(" + 
-                          (projection(sf)[0] - 100) + "," + 
+                          (projection(sf)[0] - sf_padding) + "," + 
                           projection(sf)[1] +  ")")
                  .append('text')
                  .attr('class', 'city')
@@ -435,10 +451,10 @@ function makeMyMap(error, bay_area, highways) {
                  .attr('class', 'highway_marker')
                  .text(function(d) { return '37';});
 
-  var marker_80 = [-122.2914271, 37.9982876];
+  var marker_80 = [-122.3073391, 37.9749885];
   svg.append('g')
       .attr("transform", "translate(" + 
-                          (projection(marker_80)[0] + 10) + "," + 
+                          (projection(marker_80)[0] + right_padding) + "," + 
                           (projection(marker_80)[1]) +  ")")
                  .append('text')
                  .attr('class', 'highway_marker')
