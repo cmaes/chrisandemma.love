@@ -331,7 +331,9 @@ function makeMyMap(error, bay_area, highways) {
                  .append('image')
                  .attr('xlink:href', 'heart.png')
                  .attr('x', -10)
-                 .attr('y', -10);
+                 .attr('y', -10)
+                 .attr('width', 24)
+                 .attr('height', 24);
 
   svg.append('g')
       .attr("transform", "translate(" + 
@@ -349,7 +351,9 @@ function makeMyMap(error, bay_area, highways) {
                  .append('image')
                  .attr('xlink:href', 'airplane.png')
                  .attr('x', -10)
-                 .attr('y', -10);
+                 .attr('y', -10)
+                 .attr('width', 24)
+                 .attr('height', 24);
 
   var right_padding = width >= 500 ? 10 : 5;
   var left_padding = width >= 500 ? 45 : 35;
@@ -374,7 +378,9 @@ function makeMyMap(error, bay_area, highways) {
                  .append('image')
                  .attr('xlink:href', 'airplane.png')
                  .attr('x', -15)
-                 .attr('y', -10);
+                 .attr('y', -10)
+                 .attr('width', 24)
+                 .attr('height', 24);
 
 
   svg.append('g')
