@@ -305,7 +305,7 @@ function makeMyMap(error, bay_area, highways) {
      .data(bay_area.features)
      .enter().append("path")
        .attr("d", path)
-       .attr("style", "stroke: black; fill: rgb(139,200, 184);");
+       .attr("style", "stroke: rgb(139,200, 184); fill: rgb(139,200, 184);");
 
   console.log(highways);
   svg.selectAll(".map_poly")
@@ -419,7 +419,7 @@ function makeMyMap(error, bay_area, highways) {
                  .append('text')
                  .attr('class', 'city')
                  .attr('style', 'fill: white')
-                 .text(function(d) { return 'San Franscio'});
+                 .text(function(d) { return 'San Francisco'});
 
   var marker_101 = [-122.515821, 37.9122075];
   svg.append('g')
