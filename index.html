@@ -280,21 +280,32 @@ h1 {
 </body>
 <script>
 
-var svg = d3.select("#map_svg"),
-    width = +svg.style("width").slice(0,-2),
-    height = +svg.style("height").slice(0,-2);
-
-
-var g = svg.append("g");
-
-
 queue()
   .defer(d3.json, 'bay_area_geo.json')
   .defer(d3.json, 'bay_area_highway_edited.json')
-  .await(makeMyMap);
+  .await(onjsonload);
 
-function makeMyMap(error, bay_area, highways) {
-  if (error) throw error;
+var bay_area;
+var highways;
+
+function onjsonload(error, json1, json2) {
+   if (error) throw error;
+   bay_area = json1;
+   highways = json2;
+   makeMap();
+   d3.select(window).on('resize', makeMap);
+}
+
+
+function makeMap() {
+  var svg = d3.select("#map_svg"),
+    width = +svg.style("width").slice(0,-2),
+    height = +svg.style("height").slice(0,-2);
+
+  svg.selectAll("*").remove();
+
+  var g = svg.append("g");
+
 
   var projection = d3.geoConicEqualArea().parallels([36, 38]).rotate([120, 0]).fitExtent([[-100,-20],[width+110, height+10]], bay_area);
 
@@ -307,7 +318,6 @@ function makeMyMap(error, bay_area, highways) {
        .attr("d", path)
        .attr("style", "stroke: rgb(139,200, 184); fill: rgb(139,200, 184);");
 
-  console.log(highways);
   svg.selectAll(".map_poly")
         .data(highways.features)
         .enter().append("path")
