@@ -229,6 +229,15 @@ h1 {
   width: 300px;
 }
 
+#e_left {
+  display: none;
+}
+
+#e_right {
+  display: none;
+}
+
+
 @media (min-width: 800px) {
     #masthead {
       padding-top: 0.5em;
@@ -268,6 +277,35 @@ h1 {
     #main_copy h1 {
      padding-top: 1.5em;
     }
+
+    #contain {
+      width: 700px;
+    }
+
+    #e_left {
+      float: left;
+      width:100px;
+      display: block;
+    }
+
+    #events {
+      float: left;
+      width: 400px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    #e_right {
+      float: right;
+      width: 100px;
+      display: block;
+    }
+
+    #address {
+      list-style: none;
+      padding-left: 0;
+    }
+
 
     #footer .names {
     font-size: 56px;
@@ -348,21 +386,39 @@ h1 {
        </div>
       </div>
 
+
        <h1 class="center"> Wedding Events </h1>
-       
+
+       <div id="contain">
+       <div id="e_left">
+	<img src="strand.png" width="80px">
+      </div>
+       <div id="events">
        <h2> Ceremony & Reception </h2>
         <center>
 	<p class="center_align">Our ceremony will be at 5:30 p.m. at:</p>
 
  
-	  <ul style="list-style:none">
+	  <ul id="address">
             <li>St. Francis Winery</li>
             <li>100 North Pythian Road </li>
             <li>Santa Rosa, California </li>
 	  </ul>
+       </div>
 
-	<p class="center_align">We’ll celebrate afterwards with dinner, drinks, and dancing.</p>
-	</center>
+
+
+       <div id="e_right">
+       	<img src="strand.png" width="80px">
+      </div>
+       
+       <div id="end_col"></div>
+
+      </div>
+    
+
+       	<p class="center_align">We’ll celebrate afterwards with
+	dinner, drinks, and dancing.</p>
 	
 	<div>
 	<div id="col_1">
@@ -377,6 +433,8 @@ h1 {
 	</div>
 	<div id="end_col"></div>
 	</div>
+
+       
 
 	<h1> Where to Stay </h1>
 	
