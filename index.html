@@ -16,12 +16,18 @@
 <script src="http://d3js.org/queue.v1.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Raleway+Dots');
-@import url('https://fonts.googleapis.com/css?family=Poiret+One');
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:100,300');
 @import url('https://fonts.googleapis.com/css?family=Sacramento');
-@import url('https://fonts.googleapis.com/css?family=Monserrat|Cardo');
+
+@font-face {
+    font-family: "Neutraface2Text";
+    src: url("Neutra2Text_light.woff2") format("woff2"),  url("Neutra2Text_light.woff") format("woff");
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: normal;
+}
+
 body {
-  font-family: "Alegreya Sans", sans;
+  font-family: Neutraface2Text, sans;
   font-size: 28px;
   font-weight: 100;
   margin: 0;
@@ -31,9 +37,8 @@ body {
   background-color: #fdfdf7;
 }
 
-
 #masthead {
-  font-family: 'Raleway Dots';
+  font-family: 'Raleway Dots', sans;
   font-size: 100px;
   color: white;
   padding-top: 0.25em;
@@ -59,7 +64,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-   font-family: 'Poiret One', sans;
+   font-family: Neutraface2Text, sans-serif;
    font-weight: 100;
    color: rgb(44,58, 87);
    text-rendering: optimizeLegibility;
@@ -86,7 +91,7 @@ h1 {
 #date {
   text-align: center;
   font-weight: 100;
-  font-family: 'Poiret One';
+  font-family: Neutraface2Text;
   font-size: 56px;
 }
 
@@ -106,7 +111,7 @@ h1 {
     padding-top: 1.25em;
     padding-bottom: 1.25em;
     color: white;
-    font-family: 'Poiret One';
+    font-family: Neutraface2Text;
     clear: both;
   }
 
@@ -162,7 +167,7 @@ h1 {
   width: 300;
   height: 400;
   background-color: #2f3d4c;
-  font-family: 'Poiret One';
+  font-family: Neutraface2Text;
   font-size: 20px;
   text-transform: lowercase;
 }
@@ -180,7 +185,7 @@ h1 {
 }
 
 #map_svg .highway_marker {
-  font-family: 'Alegreya Sans';
+  font-family: Neutraface2Text;
   font-size: 18px;
   fill: white;
 }
@@ -199,7 +204,7 @@ h1 {
 }
 
 #main_copy p {
-  font-family: 'Alegreya Sans';
+  font-family: Neutraface2Text;
   font-weight: 300;
   font-size: 20px;
   text-align: justify;
@@ -344,7 +349,7 @@ header a {
   opacity: 0;
   top: -100px;
   padding-bottom: 6px;
-  font-family: 'Poiret One', sans-serif;
+  font-family: Neutraface2Text, sans-serif;
 }
 
 .sticky {
@@ -369,7 +374,7 @@ nav ul li {
 
 nav ul a {
   color: white;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 .mobile-toggle {
