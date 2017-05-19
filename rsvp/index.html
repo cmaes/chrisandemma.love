@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><html>
+<head>
+<title>Chris and Emma</title>
+<meta charset="utf-8">
+<meta name="description" content="Chris and Emma are getting married!">
+<meta property="og:title" content="Chris+Emma=Love" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://chrisandemma.love/" />
+<meta property="og:image" content="http://chrisandemma.love/san_diego.jpeg" />
+<meta property="og:description" content="Chris and Emma are getting married!">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico?" type="image/x-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Raleway+Dots');
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
+
+@font-face {
+    font-family: "Neutraface2Text";
+    src: url("Neutra2Text_light.woff2") format("woff2"),  url("Neutra2Text_light.woff") format("woff");
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: normal;
+}
+
+body {
+  font-family: Neutraface2Text, sans;
+  font-size: 28px;
+  font-weight: 100;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  color: rgb(44,58, 87);
+  background-color: #fdfdf7;
+}
+
+#masthead {
+  font-family: 'Raleway Dots', sans;
+  font-size: 100px;
+  color: white;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  background: rgb(139,200, 184);
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  text-transform: none;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 560px;
+}
+
+#main_content {
+  margin: 0;
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+h1, h2, h3, h4 {
+   font-family: Neutraface2Text, sans-serif;
+   font-weight: 100;
+   color: rgb(44,58, 87);
+   text-rendering: optimizeLegibility;
+}
+
+h1 {
+   line-height: 1.2em;
+   letter-spacing: -0.025em;
+   font-weight: 1200;
+   font-size: 52px;
+   margin-top: 0;
+   margin-right: 0;
+   margin-bottom: 0;
+   margin-left: 0;
+   text-transform: none;
+}
+
+
+.center {
+  text-align: center;
+}
+
+
+#date {
+  text-align: center;
+  font-weight: 100;
+  font-family: Neutraface2Text;
+  font-size: 56px;
+}
+
+#where a {
+  color: rgb(139,200, 184);
+  text-decoration: none;
+}
+#where a:visted {
+   color: rgb(139,200, 184);
+}
+
+
+ #footer {
+    background: #596e79;
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    color: white;
+    font-family: Neutraface2Text;
+    clear: both;
+  }
+
+  #footer .names {
+    font-size: 30px;
+  }
+
+  #footer a {
+    color: white;
+    text-decoration: none;
+  }
+  site_icon {
+      padding-right: 0.25em;
+  }
+
+  #eucy_horiz {
+    font-size: 60px;
+    padding-top: 1em;
+    background-image: url('eucy_horiz.png');
+    width: 300px;
+    height: 140px;
+    background-size: 300px 120px;
+    background-repeat: no-repeat;
+    background-position-x: -10px;
+    background-position-y: 50px;
+  }
+
+  #walking {
+      padding-top: 0.25em;
+      padding-bottom: 1em;
+      width: 300px;
+  }
+
+  #the_insert {
+    font-family: 'Sacramento';
+    font-size: 36px;
+    font-weight: 100;
+  }
+
+  
+  #map {
+   width: 300px;
+   height: 640px;
+   }
+
+  #location {
+    text-align: center;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+  }
+
+#map_svg {
+  width: 300;
+  height: 400;
+  background-color: #2f3d4c;
+  font-family: Neutraface2Text;
+  font-size: 20px;
+  text-transform: lowercase;
+}
+
+#map_svg .airport {
+  fill: #d9ff32;
+}
+
+#map_svg #stfrancis {
+  fill: #ce3a30;
+}
+
+#map_svg .city {
+  fill: black;
+}
+
+#map_svg .highway_marker {
+  font-family: Neutraface2Text;
+  font-size: 18px;
+  fill: white;
+}
+
+#main_copy {
+  width: 300px;
+}
+
+#main_copy h1 {
+  padding-top: 0.8em;
+  padding-bottom: 0.5em;
+}
+
+#main_copy h2 {
+  font-size: 28px;
+}
+
+#main_copy p {
+  font-family: Neutraface2Text;
+  font-weight: 300;
+  font-size: 20px;
+  text-align: justify;
+}
+
+#main_copy .center_align {
+  text-align: center;
+}
+
+#main_copy a {
+  color: rgb(139,200, 184);
+  text-decoration: none;
+}
+#main_copy a:visted {
+   color: rgb(139,200, 184);
+}
+
+#end_col {
+  clear: both;
+}
+#col_1 {
+  float: left;
+  width: 300px;
+}
+
+#col_2 {
+  float: right;
+  width: 300px;
+}
+
+#e_left {
+  display: none;
+}
+
+#e_right {
+  display: none;
+}
+
+
+#address {
+ list-style: none;
+ padding-left: 0;
+}
+
+#address li {
+ list-style-type: none;
+}
+
+header {
+ display:none;
+}
+
+@media (min-width: 800px) {
+    #masthead {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    #main_content {
+      padding-top: 0.25em;
+      padding-bottom: 2em;
+    }
+    #date {
+     font-size: 80px;
+    }
+    #walking {
+      padding-top: .5em;
+      padding-bottom: 1.25em;
+      width: 500px;
+    }
+    #location {
+     padding-top: 1em;
+     padding-bottom: 1em;
+    }
+    #map {
+     padding-top: 2em;
+     width: 500px;
+     height: 640px;
+    }
+    #map_svg { 
+     width: 500px;
+     height: 600px;
+     font-size: 22px;
+    }
+ 
+    #main_copy {
+     width: 700px;
+    }
+
+    #main_copy h1 {
+     padding-top: 1.5em;
+    }
+
+    #contain {
+      width: 700px;
+    }
+
+    #e_left {
+      float: left;
+      width:100px;
+      display: block;
+    }
+
+    #events {
+      float: left;
+      width: 400px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    #e_right {
+      float: right;
+      width: 100px;
+      display: block;
+    }
+
+    #footer .names {
+    font-size: 56px;
+    }
+    site_icon {
+      padding-right: 1em;
+    }
+
+header {
+  display: block;
+  font-size: 24px;
+  color: white;
+}
+
+header a {
+ text-decoration: none;
+}
+
+.main_h {
+  position: fixed;
+  max-height: 70px;
+  z-index: 999;
+  width: 100%;
+  padding-top: 17px;
+  background: none;
+  overflow: hidden;
+  transition: all 0.3s;
+  opacity: 0;
+  top: -100px;
+  padding-bottom: 6px;
+  font-family: Neutraface2Text, sans-serif;
+}
+
+.sticky {
+  background-color: rgb(139,200, 184); //rgba(253, 253, 247, 0.95);//rgba(255, 255, 255, 0.93);
+  opacity: 1;
+  top: 0px;
+  //border-bottom: 1px solid gainsboro;
+}
+
+nav ul {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  list-style: none;
+  overflow:hidden;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 35px;
+  line-height: 1.5;
+}
+
+nav ul a {
+  color: white;
+  //text-transform: uppercase;
+}
+
+.mobile-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 22px;
+  top: 0;
+  width: 30px;
+  -webkit-transition: all 200ms ease-in;
+  -moz-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+}
+.mobile-toggle span {
+  width: 30px;
+  height: 4px;
+  margin-bottom: 6px;
+  border-radius: 1000px;
+  background: #8f8f8f;
+  display: block;
+}
+
+.row {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 2%;
+}
+
+
+}
+
+</style>
+<body>
+  <div id="masthead">
+    <center>
+      Chris & Emma
+    </center>
+  </div>
+  <header class="main_h" id="my_header">
+   <div class="row">
+     <!-- <a class="logo" href="#">C+E</a> -->
+     <!-- <div class="mobile-toggle">
+        <span></span>
+       <span></span>
+        <span></span>
+    </div> -->
+     <center>
+     <nav>
+       <ul id="nav_ul">
+         <li><a href="#sec01">About Us</a></li>
+         <li><a href="#sec02">Wedding</a></li>
+         <li><a href="#sec03">Travel</a></li>
+         <li><a href="#sec04">Stay</a></li>
+	 <li><a href="#sec05">Registry</a></li>
+       </ul>
+     </nav>
+     </center>
+   </div>
+  </header>
+  <div id="container">
+    <div id="main_content">
+	 <h1> RSVP </h1>
+	 <p style="">Because you have supported our love and shared in our joy, you are invited to celebrate our marriage on August 12, 2017 at St. Francis Winery in Santa Rosa, California. We can't wait to see you!</p>
+
+	 <form id="rsvp" target="_self" onsubmit="" action="javascript: postToGoogle()">
+	     <label>Name</label>
+	     <input id="name" style="height:40px; font-size:14px; margin-left:45px"></input></br>
+	     </br>
+	     <label> Will you attend our wedding on August 12th?</label></br>
+             <input type="radio" name="attend" value="yes" checked>
+	     Yes, we can't wait!</input></br>
+	     <input type="radio" name="attend" value="no">No, we'll celebrate from afar.</input></br>
+	     </br>
+	     <label>What song will get you on the dance floor?</label></br>
+	     <input id="song" style="height: 40px; font-size:14px; margin-left:45px"></input></br>
+	     <label>Will you attend our Welcome Gathering on Friday, August 11?</label>
+	     <input type="radio" name="welcome" value="yes"> Yes </input></br>
+	     <input type="radio" name="welcome" value="no"> No </input></br>
+	     <input type="radio" name="welcome" value="maybe"> Maybe, I'll let you know by July 15th</input></br>
+	     
+	     <div style="width: 100%; display: block; float: right;">
+	       <button id="send" type="submit">
+		 Send
+	       </button>
+	     </div>
+	 </form>
+	 </div>
+         </center>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="container">
+      <center>
+	<site_icon>
+          <a href="mailto:cmmaes@gmail.com"><span class="names">chris</span></a>
+        </site_icon>
+	<site_icon onclick="document.getElementById('like').className = 'fa fa-heart fa-2x'">
+          <i id="like" class="fa fa-heart-o fa-2x"></i>
+        </site_icon>
+	<site_icon>
+	  <span class="names">
+	  <a href="mailto:emmafaye@gmail.com">emma</i></a>
+          </span>
+	</site_icon>
+      </center>
+    </div>
+  </div>
+</body>
