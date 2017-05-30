@@ -11,16 +11,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.ico?" type="image/x-icon">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/d3-geo.v1.min.js"></script>
-<script src="http://d3js.org/queue.v1.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/g/pure@0.6.2(base-min.css+grids-min.css+forms-min.css)">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Raleway+Dots');
 @import url('https://fonts.googleapis.com/css?family=Sacramento');
 
 @font-face {
     font-family: "Neutraface2Text";
-    src: url("Neutra2Text_light.woff2") format("woff2"),  url("Neutra2Text_light.woff") format("woff");
+    src: url("../Neutra2Text_light.woff2") format("woff2"),  url("../Neutra2Text_light.woff") format("woff");
     font-style: normal;
     font-weight: 400;
     font-stretch: normal;
@@ -28,13 +27,13 @@
 
 body {
   font-family: Neutraface2Text, sans;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 100;
   margin: 0;
   text-rendering: optimizeLegibility;
   text-transform: none;
   color: rgb(44,58, 87);
-  background-color: #fdfdf7;
+  background-color: #596e79;
 }
 
 #masthead {
@@ -61,6 +60,7 @@ body {
   padding-left: 0.25em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
+  background-color: #fdfdf7;
 }
 
 h1, h2, h3, h4 {
@@ -257,6 +257,30 @@ header {
  display:none;
 }
 
+#names {
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+.rsvp_button {
+  width: 400px;
+  height: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: none;
+  color: white;
+  font-weight: 200;
+  background-color: rgb(139,200, 184);
+}
+
+.rsvp_hidden {
+ display: none;
+}
+.rsvp_visible {
+ display: block;
+}
+
+
 @media (min-width: 800px) {
     #masthead {
       padding-top: 0.5em;
@@ -413,76 +437,81 @@ nav ul a {
 <body>
   <div id="masthead">
     <center>
-      Chris & Emma
+      Emma & Chris
     </center>
   </div>
-  <header class="main_h" id="my_header">
-   <div class="row">
-     <!-- <a class="logo" href="#">C+E</a> -->
-     <!-- <div class="mobile-toggle">
-        <span></span>
-       <span></span>
-        <span></span>
-    </div> -->
-     <center>
-     <nav>
-       <ul id="nav_ul">
-         <li><a href="#sec01">About Us</a></li>
-         <li><a href="#sec02">Wedding</a></li>
-         <li><a href="#sec03">Travel</a></li>
-         <li><a href="#sec04">Stay</a></li>
-	 <li><a href="#sec05">Registry</a></li>
-       </ul>
-     </nav>
-     </center>
-   </div>
-  </header>
   <div id="container">
     <div id="main_content">
-	 <h1> RSVP </h1>
-	 <p style="">Because you have supported our love and shared in our joy, you are invited to celebrate our marriage on August 12, 2017 at St. Francis Winery in Santa Rosa, California. We can't wait to see you!</p>
+      <center>
+      <div id="main_copy">
+	<h1 class="center" id="sec01"> You're Invited </h1>
+	<form id="my-form" class="pure-form">
+	  <fieldset>
+            <legend>Enter the names on your invitation</legend>
+            <input id="names" class="pure-input-1" placeholder="e.g. John & Jane Smith" type="text">
+	    <label for="attend" class="pure-input-1-2">Will you attend the wedding?</label>
+	    <select id="attend" class="pure-input-1-2" required>
+              <option>Yes, can't wait!</option>
+              <option>No, we'll celebrate from afar</option>
+	    </select>
 
-	 <form id="rsvp" target="_self" onsubmit="" action="javascript: postToGoogle()">
-	     <label>Name</label>
-	     <input id="name" style="height:40px; font-size:14px; margin-left:45px"></input></br>
-	     </br>
-	     <label> Will you attend our wedding on August 12th?</label></br>
-             <input type="radio" name="attend" value="yes" checked>
-	     Yes, we can't wait!</input></br>
-	     <input type="radio" name="attend" value="no">No, we'll celebrate from afar.</input></br>
-	     </br>
-	     <label>What song will get you on the dance floor?</label></br>
-	     <input id="song" style="height: 40px; font-size:14px; margin-left:45px"></input></br>
-	     <label>Will you attend our Welcome Gathering on Friday, August 11?</label>
-	     <input type="radio" name="welcome" value="yes"> Yes </input></br>
-	     <input type="radio" name="welcome" value="no"> No </input></br>
-	     <input type="radio" name="welcome" value="maybe"> Maybe, I'll let you know by July 15th</input></br>
-	     
-	     <div style="width: 100%; display: block; float: right;">
-	       <button id="send" type="submit">
-		 Send
-	       </button>
-	     </div>
-	 </form>
-	 </div>
-         </center>
+	    <div class="pure-control-group">
+	      <input id="welcome_party" type="checkbox">
+	      I'm coming to the welcome party on Friday, August 11
+	    </div>
+
+	    <div class="pure-control-group">
+	      <input id="brunch" type="checkbox">
+	      I'm coming to the farewell brunch on Sunday, August 13th
+	      </div>
+	      
+	    <input id="song" class="pure-input-1" placeholder="What song will get you on the dance floor?"
+                   type="text">
+	    <button class="rsvp_button">Submit RSVP</button>
+      </div>
+      </fieldset>
+      </form>
     </div>
+   </div>
   </div>
   <div id="footer">
     <div class="container">
       <center>
 	<site_icon>
-          <a href="mailto:cmmaes@gmail.com"><span class="names">chris</span></a>
-        </site_icon>
-	<site_icon onclick="document.getElementById('like').className = 'fa fa-heart fa-2x'">
-          <i id="like" class="fa fa-heart-o fa-2x"></i>
-        </site_icon>
-	<site_icon>
 	  <span class="names">
 	  <a href="mailto:emmafaye@gmail.com">emma</i></a>
           </span>
 	</site_icon>
+	<site_icon onclick="document.getElementById('like').className = 'fa fa-heart fa-2x'">
+          <i id="like" class="fa fa-heart-o fa-2x"></i>
+        </site_icon>
+	<site_icon>
+          <a href="mailto:cmmaes@gmail.com"><span class="names">chris</span></a>
+        </site_icon>
+
       </center>
     </div>
   </div>
 </body>
+<script>
+$('#my-form').on('submit', function(e) {
+  e.preventDefault(); 
+  console.log('before');
+  $.ajax({
+    type:"POST",
+    dataType: "xml",
+    url: "https://docs.google.com/forms/d/e/1FAIpQLSdrC53CyQgNVArsN7cJa6cGrjDfrmB5Lm013drG5oUOjLcaEg/formResponse",
+    data: {
+      'entry.1645320828': $('#names').val(),
+      'entry.1178924851': $('#attend').val(),
+      'entry.1966150293': $('#welcome_party').val(),
+      'entry.1103367451': $('#brunch').val(),
+      'entry.1428355106': $('#song').val(),
+    },
+   success: function(data, status, jqxhr) { console.log('success'); },
+   error: function(jqxhr, status, err) { console.log('error'); console.log(status); console.log(err);}
+   });
+  console.log('after');
+});
+
+</script>
