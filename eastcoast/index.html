@@ -454,7 +454,7 @@ nav ul a {
             <input id="names" class="pure-input-1" placeholder="e.g. John & Jane Smith" type="text">
 	    <label for="attend" class="pure-input-1">Will you attend the celebration?</label>
 	    <select id="attend" class="pure-input-1" required>
-              <option>Yes, can't wait!</option>
+              <option>Yes!</option>
               <option>No, can't make it</option>
 	    </select>
 	    <button class="rsvp_button">Submit RSVP</button>
@@ -490,23 +490,14 @@ $('#my-form').on('submit', function(e) {
   console.log({data: {
       'entry.1645320828': $('#names').val(),
       'entry.1178924851': $('#attend').val(),
-      'entry.1966150293': $('#welcome_party').val(),
-      'entry.1103367451': $('#brunch').val(),
-      'entry.1428355106': $('#song').val(),
     }});
   $.ajax({
     type:"POST",
-    dataType: "xml",
-    url: "https://docs.google.com/forms/d/e/1FAIpQLSdrC53CyQgNVArsN7cJa6cGrjDfrmB5Lm013drG5oUOjLcaEg/formResponse",
+    url: "https://docs.google.com/forms/d/e/1FAIpQLSe2ljOAaV6XctkkqOaczfGE31GI2GzAdkg0hqVk-mfSY_8Xhw/formResponse",
     data: {
-      'entry.1645320828': $('#names').val(),
-      'entry.1178924851': $('#attend').val(),
-      'entry.1966150293': $('#welcome_party').val(),
-      'entry.1103367451': $('#brunch').val(),
-      'entry.1428355106': $('#song').val(),
-    },
-   success: function(data, status, jqxhr) { console.log('success'); },
-   error: function(jqxhr, status, err) { console.log('error'); console.log(status); console.log(err);}
+      'entry.371664248': $('#names').val(),
+      'entry.1101037548': $('#attend').val(),
+    }
    });
   console.log('after');
   window.location.replace("http://chrisandemma.love");
