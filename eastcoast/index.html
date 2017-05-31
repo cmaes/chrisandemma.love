@@ -9,7 +9,7 @@
 <meta property="og:image" content="http://chrisandemma.love/san_diego.jpeg" />
 <meta property="og:description" content="Chris and Emma are getting married!">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="favicon.ico?" type="image/x-icon">
+<link rel="icon" href="../favicon.ico?" type="image/x-icon">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/g/pure@0.6.2(base-min.css+grids-min.css+forms-min.css)">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -447,13 +447,15 @@ nav ul a {
     <div id="main_content">
       <center>
       <div id="main_copy">
+	<iframe name="hidden_iframe" id="hidden_iframe" onload="if(submitted) { window.location = 'http://chrisandemma.love/index.html?rsvp=1'}" style="display:none">
+	</iframe>
 	<h1 class="center" id="sec01">East Coast Celebration</h1>
-	<form id="my-form" class="pure-form">
+	<form id="my-form" class="pure-form" action="https://docs.google.com/forms/d/e/1FAIpQLSe2ljOAaV6XctkkqOaczfGE31GI2GzAdkg0hqVk-mfSY_8Xhw/formResponse" method="post" target="hidden_iframe" onsubmit="submitted=true;">
 	  <fieldset>
             <legend>Enter the names on your invitation</legend>
-            <input id="names" class="pure-input-1" placeholder="e.g. John & Jane Smith" type="text">
+            <input id="names" class="pure-input-1" placeholder="e.g. John & Jane Smith" type="text" name="entry.371664248">
 	    <label for="attend" class="pure-input-1">Will you attend the celebration?</label>
-	    <select id="attend" class="pure-input-1" required>
+	    <select id="attend" class="pure-input-1" name="entry.1101037548" required>
               <option>Yes!</option>
               <option>No, can't make it</option>
 	    </select>
@@ -484,23 +486,5 @@ nav ul a {
   </div>
 </body>
 <script>
-$('#my-form').on('submit', function(e) {
-  e.preventDefault(); 
-  console.log('before');
-  console.log({data: {
-      'entry.1645320828': $('#names').val(),
-      'entry.1178924851': $('#attend').val(),
-    }});
-  $.ajax({
-    type:"POST",
-    url: "https://docs.google.com/forms/d/e/1FAIpQLSe2ljOAaV6XctkkqOaczfGE31GI2GzAdkg0hqVk-mfSY_8Xhw/formResponse",
-    data: {
-      'entry.371664248': $('#names').val(),
-      'entry.1101037548': $('#attend').val(),
-    }
-   });
-  console.log('after');
-  setTimeout(function(){ window.location.replace("http://chrisandemma.love/index.html?rsvp=1"); }, 500);
-});
-
+var submitted = false;
 </script>

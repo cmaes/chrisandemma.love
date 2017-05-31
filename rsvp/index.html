@@ -9,13 +9,12 @@
 <meta property="og:image" content="http://chrisandemma.love/san_diego.jpeg" />
 <meta property="og:description" content="Chris and Emma are getting married!">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="favicon.ico?" type="image/x-icon">
+<link rel="icon" href="../favicon.ico?" type="image/x-icon">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/g/pure@0.6.2(base-min.css+grids-min.css+forms-min.css)">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Raleway+Dots');
-@import url('https://fonts.googleapis.com/css?family=Sacramento');
 
 @font-face {
     font-family: "Neutraface2Text";
@@ -447,29 +446,31 @@ nav ul a {
     <div id="main_content">
       <center>
       <div id="main_copy">
+	<iframe name="hidden_iframe" id="hidden_iframe" onload="if(submitted) { window.location = 'http://chrisandemma.love/index.html?rsvp=1'}" style="display:none">
+	</iframe>
 	<h1 class="center" id="sec01"> You're Invited </h1>
-	<form id="my-form" class="pure-form">
+	<form id="my-form" class="pure-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdrC53CyQgNVArsN7cJa6cGrjDfrmB5Lm013drG5oUOjLcaEg/formResponse" method="post" target="hidden_iframe" onsubmit="submitted=true;">
 	  <fieldset>
             <legend>Enter the names on your invitation</legend>
-            <input id="names" class="pure-input-1" placeholder="e.g. John & Jane Smith" type="text">
+            <input id="names" class="pure-input-1" placeholder="e.g. John & Jane Smith" type="text" name="entry.1645320828">
 	    <label for="attend" class="pure-input-1">Will you attend the wedding?</label>
-	    <select id="attend" class="pure-input-1" required>
-              <option>Yes, can't wait!</option>
-              <option>No, we'll celebrate from afar</option>
+	    <select id="attend" class="pure-input-1" name="entry.1178924851" required>
+              <option value="Yes, can't wait!">Yes, can't wait!</option>
+              <option value="No, we'll celebrate from afar">No, we'll celebrate from afar</option>
 	    </select>
 
 	    <div class="pure-control-group">
-	      <input id="welcome_party" type="checkbox">
+	      <input id="welcome_party" type="checkbox" name="entry.1966150293" value="yes">
 	      I'm coming to the welcome party on Friday, August 11
 	    </div>
 
 	    <div class="pure-control-group">
-	      <input id="brunch" type="checkbox">
+	      <input id="brunch" type="checkbox" name="entry.1103367451" value="yes">
 	      I'm coming to the farewell brunch on Sunday, August 13th
 	      </div>
 	      
 	    <input id="song" class="pure-input-1" placeholder="What song will get you on the dance floor?"
-                   type="text">
+                   type="text" name="entry.1428355106">
 	    <button class="rsvp_button">Submit RSVP</button>
       </div>
       </fieldset>
@@ -497,30 +498,5 @@ nav ul a {
   </div>
 </body>
 <script>
-$('#my-form').on('submit', function(e) {
-  e.preventDefault(); 
-  console.log('before');
-  console.log({data: {
-      'entry.1645320828': $('#names').val(),
-      'entry.1178924851': $('#attend').val(),
-      'entry.1966150293': $('#welcome_party').is(':checked') ? 'yes' : 'no',
-      'entry.1103367451': $('#brunch').is(':checked') ? 'yes' : 'no',
-      'entry.1428355106': $('#song').val(),
-    }});
-  $.ajax({
-    type:"POST",
-    dataType: "xml",
-    url: "https://docs.google.com/forms/d/e/1FAIpQLSdrC53CyQgNVArsN7cJa6cGrjDfrmB5Lm013drG5oUOjLcaEg/formResponse",
-    data: {
-      'entry.1645320828': $('#names').val(),
-      'entry.1178924851': $('#attend').val(),
-      'entry.1966150293': $('#welcome_party').is(':checked') ? 'yes' : 'no',
-      'entry.1103367451': $('#brunch').is(':checked') ? 'yes' : 'no',
-      'entry.1428355106': $('#song').val(),
-    },
-   });
-  console.log('after');
-  setTimeout(function(){ window.location.replace("http://chrisandemma.love/index.html?rsvp=1"); }, 500);
-});
-
+var submitted = false;
 </script>
