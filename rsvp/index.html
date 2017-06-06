@@ -261,6 +261,11 @@ margin-top: 1em;
 margin-bottom: 1em;
 }
 
+.parties {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
 .rsvp_button {
   width: 300px;
   height: 2em;
@@ -448,7 +453,7 @@ nav ul a {
       <div id="main_copy">
 	<iframe name="hidden_iframe" id="hidden_iframe" onload="if(submitted) { window.location = 'http://chrisandemma.love/index.html?rsvp=1'}" style="display:none">
 	</iframe>
-	<h1 class="center" id="sec01"> You're Invited </h1>
+	<h1 class="center" id="sec01"><a href="http://chrisandemma.love">You're Invited</a> </h1>
 	<form id="my-form" class="pure-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdrC53CyQgNVArsN7cJa6cGrjDfrmB5Lm013drG5oUOjLcaEg/formResponse" method="post" target="hidden_iframe" onsubmit="submitted=true;">
 	  <fieldset>
             <legend>Enter the names on your invitation</legend>
@@ -459,12 +464,12 @@ nav ul a {
               <option value="No, we'll celebrate from afar">No, we'll celebrate from afar</option>
 	    </select>
 
-	    <div class="pure-control-group">
+	    <div class="pure-control-group parties">
 	      <input id="welcome_party" type="checkbox" name="entry.1966150293" value="yes">
 	      I'm coming to the welcome party on Friday, August 11
 	    </div>
 
-	    <div class="pure-control-group">
+	    <div class="pure-control-group parties">
 	      <input id="brunch" type="checkbox" name="entry.1103367451" value="yes">
 	      I'm coming to the farewell brunch on Sunday, August 13th
 	      </div>
@@ -472,6 +477,10 @@ nav ul a {
 	    <input id="song" class="pure-input-1" placeholder="What song will get you on the dance floor?"
                    type="text" name="entry.1428355106">
 	    <button class="rsvp_button">Submit RSVP</button>
+
+	    <p style="font-size:14px; text-align:center"> If you have any questions or special circumstances, please email 
+	      <a href="mailto:cmmaes@gmail">Chris</a> or <a href="mailto:emmafaye@gmail.com">Emma</a>. Thanks!
+	    </p>
       </div>
       </fieldset>
       </form>
